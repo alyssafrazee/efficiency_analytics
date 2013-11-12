@@ -9,7 +9,7 @@ import time
 from optparse import OptionParser
 opts = OptionParser()
 opts.add_option("--email", "-e", type="string", help="your email address")
-opts.add_option("--alias", "-a", type="string", help="the alias you sent your batch job completion emails to (what comes after the +)")
+opts.add_option("--alias", "-a", type="string", help="the alias you sent your batch job completion emails to (e.g. myemail+projectname@gmail.com)")
 opts.add_option("--limit", "-k", type="int", help="max number of messages to return", default=1000)
 opts.add_option("--outfile", "-f", type="string", help="where should I write the output data?")
 options, arguments = opts.parse_args()
@@ -61,15 +61,13 @@ print 'parsing successful!'
 def turn_to_hrs(strtime):
     return int(strtime[0])+float(strtime[1])/60+float(strtime[2])/3600
 wallclock_times = [d['Wallclock Time'] for d in data]
-wallclock_times = map(lambda(x): x.split(':'), wallclock_times)
-wallclock_times = map(turn_to_hrs, wallclock_times)
+wallclock_times = map(lambda(x): turn_to_hrs(x.split(':')), wallclock_times)
 
 ### extract system times for each job:
 def turn_to_minutes(strtime):
     return int(strtime[0])*60+int(strtime[1])+float(strtime[2])/60
 system_times = [d['System Time'] for d in data]
-system_times = map(lambda(x): x.split(':'), system_times)
-system_times = map(turn_to_minutes, system_times)
+system_times = map(lambda(x): turn_to_minutes(x.split(':')), system_times)
 
 ### write out file containing the analytics 
 print 'writing out data file...'
@@ -87,7 +85,7 @@ with open(options.outfile, 'w') as f:
 ### check exit statuses
 exit_status = [d['Exit Status'] for d in data]
 if not set(exit_status) == set(u'0'):
-    print 'warning: some of your jobs exited with an error.'
+    print 'warning: some of your jobs exited abnormally (exit status not 0)'
 
-print 'analytics complete!'
+print 'data collection complete!'
 
