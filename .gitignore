@@ -1,0 +1,7 @@
+client_secrets
+efficiency-analytics.md
+.DS_Store
+analyze_efficiency_specific.py
+*.pyc
+*.png
+times.txt
