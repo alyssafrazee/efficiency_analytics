@@ -38,7 +38,7 @@ else:
 ### grab the emails from the jobs in question
 ### I put them in a gmail label called 'brain_cufflinks_AJ'
 print 'grabbing emails...'
-job_reports = account.get_messages(email = options.alias, limit = options.limit)
+job_reports = account.get_messages(email = options.alias, limit = int(options.limit))
 data = []
 print 'parsing statistics from emails [may take several minutes]...'
 for job in job_reports:
