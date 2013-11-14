@@ -19,13 +19,13 @@ From the command line, run:
 `python analyze_efficiency.py --email <EMAIL> --alias <ALIAS> --limit <LIMIT> --outfile <OUTFILE>`
 
 where:
-- <EMAIL> is your email address (e.g., `myemail@gmail.com`)
+- `<EMAIL>` is your email address (e.g., `myemail@gmail.com`)
 
-- <ALIAS> is the address to which all your "Job Complete!" emails have been sent (e.g., `myemail+projectname@gmail.com`).  Support for filters other than alias is in development :) 
+- `<ALIAS>` is the address to which all your "Job Complete!" emails have been sent (e.g., `myemail+projectname@gmail.com`).  Support for filters other than alias is in development :) 
 
-- <LIMIT> is the maximum number of messages to retrieve.  Defaults to 1000.
+- `<LIMIT>` is the maximum number of messages to retrieve.  Defaults to 1000.
 
-- <OUTFILE> is the file where the runtime and memory use of your batch jobs will be written
+- `<OUTFILE>` is the file where the runtime and memory use of your batch jobs will be written
 
 ## license
 MIT
