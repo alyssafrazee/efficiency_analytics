@@ -10,7 +10,7 @@ from optparse import OptionParser
 opts = OptionParser()
 opts.add_option("--email", "-e", type="string", help="your email address")
 opts.add_option("--alias", "-a", type="string", help="the alias you sent your batch job completion emails to (e.g. myemail+projectname@gmail.com)")
-opts.add_option("--limit", "-k", type="int", help="max number of messages to return", default=1000)
+opts.add_option("--limit", "-l", type="int", help="max number of messages to return", default=1000)
 opts.add_option("--outfile", "-f", type="string", help="where should I write the output data?")
 options, arguments = opts.parse_args()
 
@@ -36,7 +36,6 @@ else:
     raise ValueError('failed to access '+options.email)
 
 ### grab the emails from the jobs in question
-### I put them in a gmail label called 'brain_cufflinks_AJ'
 print 'grabbing emails...'
 job_reports = account.get_messages(email = options.alias, limit = int(options.limit))
 data = []
