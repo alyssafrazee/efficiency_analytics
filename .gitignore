@@ -5,3 +5,4 @@ analyze_efficiency_specific.py
 *.pyc
 *.png
 times.txt
+bams.txt

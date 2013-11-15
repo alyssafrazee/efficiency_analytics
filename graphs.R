@@ -54,3 +54,39 @@ plot(dat$memory, dat$systime,
 	xlab="memory usage", ylab="system time",
 	pch=19, col="navy")
 
+## by request: plot/regress input size vs. efficiency
+baminfo = read.table("bams.txt", header=FALSE)
+names(baminfo) = c('permissions','x','owner','group','size','month','day','year','filename')
+sample_id = sapply(dat$jobid, function(x) substr(x,1,5))
+bam_id = sapply(baminfo$filename, function(x) substr(x, 13, 17))
+sizes = as.character(baminfo$size[match(sample_id, bam_id)])
+sizeingigs = sapply(sizes, function(x){
+	num = as.numeric(substr(x,1,nchar(x)-1))
+	num = ifelse(substr(x,nchar(x),nchar(x)) == "M", num/1024, num)
+	num
+}, USE.NAMES=FALSE)
+
+png('inputsize.png', width=700, height=350)
+par(mfrow=c(1,2))
+plot(sizeingigs, dat$walltime, 
+	xlab="input size (gigabytes)", ylab="wallclock time (hours)",
+	pch=19, col="purple3", main="input size vs. wallclock time")
+plot(sizeingigs, dat$memory,
+	xlab="input size (gigabytes)", ylab="memory usage (gigabytes)",
+	pch=19, col="dodgerblue", main="input size vs. memory use")
+dev.off()
+
+cor(sizeingigs, dat$walltime) #0.80
+cor(sizeingigs, dat$memory) #0.29
+
+
+
+
+
+
+
+
+
+
+
+
