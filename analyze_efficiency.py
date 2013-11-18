@@ -71,14 +71,15 @@ system_times = map(lambda(x): turn_to_minutes(x.split(':')), system_times)
 ### write out file containing the analytics 
 print 'writing out data file...'
 with open(options.outfile, 'w') as f:
-    f.write('jobid\tnode\twalltime\tsystime\tmemory\n')
+    f.write('jobid\tnode\twalltime\tsystime\tmemory\tstatus\n')
     i = 0
     for d in data:
         f.write(d['name']+'\t')
         f.write(d['Host']+'\t')
         f.write(str(wallclock_times[i])+'\t')
         f.write(str(system_times[i])+'\t')
-        f.write(d['Max vmem'][:-1]+'\n')
+        f.write(d['Max vmem'][:-1]+'\t')
+        f.write(d['Exit Status']+'\n')
         i += 1
 
 ### check exit statuses

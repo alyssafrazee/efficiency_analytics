@@ -25,7 +25,7 @@ where:
 
 - `<LIMIT>` is the maximum number of messages to retrieve.  Defaults to 1000.
 
-- `<OUTFILE>` is the file where the runtime and memory use of your batch jobs will be written.  This will be a tab-separated file with columns `jobid`, `node`, `walltime`, `systime`, and `memory`.
+- `<OUTFILE>` is the file where the runtime, memory use, and exit status of your batch jobs will be written.  This will be a tab-separated file with columns `jobid`, `node`, `walltime`, `systime`, `memory`, and `status`.
 
 ## license
 MIT
