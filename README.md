@@ -16,16 +16,24 @@ CONSUMER_SECRET <secrethere>
 ## usage
 From the command line, run:
 
-`python analyze_efficiency.py --email <EMAIL> --alias <ALIAS> --limit <LIMIT> --outfile <OUTFILE>`
+`python analyze_efficiency.py --email <EMAIL> --alias <ALIAS> --limit <LIMIT> --outfile <OUTFILE>` 
+
+or
+
+`python analyze_efficiency.py --email <EMAIL> --folder <FOLDER> --limit <LIMIT> --outfile <OUTFILE>` 
 
 where:
 - `<EMAIL>` is your email address (e.g., `myemail@gmail.com`)
 
-- `<ALIAS>` is the address to which all your "Job Complete!" emails have been sent (e.g., `myemail+projectname@gmail.com`).  Support for filters other than alias is in development :) 
+- `<ALIAS>` is the address to which all your "Job Complete!" emails have been sent (e.g., `myemail+projectname@gmail.com`).  
+
+- `<FOLDER>`is the folder (i.e. label, in gmail) where you've stored all your "Job Complete!" emails
 
 - `<LIMIT>` is the maximum number of messages to retrieve.  Defaults to 1000.
 
 - `<OUTFILE>` is the file where the runtime, memory use, and exit status of your batch jobs will be written.  This will be a tab-separated file with columns `jobid`, `node`, `walltime`, `systime`, `memory`, and `status`.
+
+Note: you should provide exactly one of `<ALIAS>` and `<FOLDER>`.  The script exits with error if none are provided, and if both are provided, `<ALIAS>` is used by default.
 
 ## license
 MIT
