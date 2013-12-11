@@ -9,10 +9,14 @@ import time
 from optparse import OptionParser
 opts = OptionParser()
 opts.add_option("--email", "-e", type="string", help="your email address")
-opts.add_option("--alias", "-a", type="string", help="the alias you sent your batch job completion emails to (e.g. myemail+projectname@gmail.com)")
+opts.add_option("--alias", "-a", type="string", help="the alias you sent your batch job completion emails to (e.g. myemail+projectname@gmail.com)", default='x')
+opts.add_option("--folder", "-d", type="string", help="name of folder or gmail label were the emails of interest live", default='x')
 opts.add_option("--limit", "-l", type="int", help="max number of messages to return", default=1000)
 opts.add_option("--outfile", "-f", type="string", help="where should I write the output data?")
 options, arguments = opts.parse_args()
+
+if options.alias == 'x' and options.folder == 'x':
+    raise ValueError('please provide one of alias or folder')
 
 ### authentication: get contextio keys
 f = open('client_secrets','r')
@@ -37,7 +41,16 @@ else:
 
 ### grab the emails from the jobs in question
 print 'grabbing emails...'
-job_reports = account.get_messages(email = options.alias, limit = int(options.limit))
+if options.alias != 'x':
+    job_reports = account.get_messages(email = options.alias, limit = int(options.limit))
+    job_reports = account.get_messages(email = options.alias, limit = int(options.limit))
+else:
+    job_reports = account.get_messages(folder = options.folder, limit = int(options.limit))
+    job_reports = account.get_messages(folder = options.folder, limit = int(options.limit))
+
+if len(job_reports) == 0:
+    raise ValueError('no emails for this alias/folder were retrieved')
+
 data = []
 print 'parsing statistics from emails [may take several minutes]...'
 for job in job_reports:
