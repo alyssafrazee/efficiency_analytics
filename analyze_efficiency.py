@@ -69,15 +69,26 @@ for job in job_reports:
     data.append(jobinfo)
 
 print 'parsing successful!'
+
 ### extract wallclock times for each job
 def turn_to_hrs(strtime):
-    return int(strtime[0])+float(strtime[1])/60+float(strtime[2])/3600
+    if len(strtime)==3:
+        return int(strtime[0]) + float(strtime[1])/60 + float(strtime[2])/3600
+    elif len(strtime)==4:
+        return int(strtime[0])*24 + int(strtime[1]) + float(strtime[2])/60 + float(strtime[3])/3600
+    else:
+        raise ValueError('script is not properly handling your wallclock times: please report this as an issue at https://github.com/alyssafrazee/efficiency_analytics')
+    
 wallclock_times = [d['Wallclock Time'] for d in data]
 wallclock_times = map(lambda(x): turn_to_hrs(x.split(':')), wallclock_times)
 
 ### extract system times for each job:
 def turn_to_minutes(strtime):
-    return int(strtime[0])*60+int(strtime[1])+float(strtime[2])/60
+    if len(strtime)==3:
+        return int(strtime[0])*60+int(strtime[1])+float(strtime[2])/60
+    else:
+        raise ValueError('script is not properly handling your system times: please report this as an issue at https://github.com/alyssafrazee/efficiency_analytics')
+
 system_times = [d['System Time'] for d in data]
 system_times = map(lambda(x): turn_to_minutes(x.split(':')), system_times)
 
