@@ -31,7 +31,7 @@ where:
 
 - `<LIMIT>` is the maximum number of messages to retrieve.  Defaults to 1000.
 
-- `<OUTFILE>` is the file where the runtime, memory use, and exit status of your batch jobs will be written.  This will be a tab-separated file with columns `jobid`, `node`, `walltime`, `systime`, `memory`, and `status`.
+- `<OUTFILE>` is the file where the runtime, memory use, and exit status of your batch jobs will be written.  This will be a tab-separated file with columns `jobid`, `node`, `walltime` (hours), `systime` (minutes), `memory`, `memunit` (e.g. `G` for gigabytes, `M` for megabytes, etc), and `status`.
 
 Note: you should provide exactly one of `<ALIAS>` and `<FOLDER>`.  The script exits with error if none are provided, and if both are provided, `<ALIAS>` is used by default.
 
