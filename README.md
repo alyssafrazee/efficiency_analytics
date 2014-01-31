@@ -36,7 +36,7 @@ where:
 Note: you should provide exactly one of `<ALIAS>` and `<FOLDER>`.  The script exits with error if none are provided, and if both are provided, `<ALIAS>` is used by default.
 
 ## license
-MIT
+[CC-0](http://creativecommons.org/publicdomain/zero/1.0/)
 
 ## to cite
 If you'd like to cite this project in a publication, you can! It has a DOI, available on its [figshare page](http://figshare.com/articles/efficiency_analytics/878000). ([More about figshare](http://figshare.com/about)) 
