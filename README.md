@@ -38,5 +38,8 @@ Note: you should provide exactly one of `<ALIAS>` and `<FOLDER>`.  The script ex
 ## license
 MIT
 
+## to cite
+If you'd like to cite this project in a publication, you can! It has a DOI, available on its [figshare page](http://figshare.com/articles/efficiency_analytics/878000). ([More about figshare](http://figshare.com/about)) 
+
 
 
